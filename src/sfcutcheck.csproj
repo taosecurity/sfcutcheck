@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- sfcutcheck: read-only finder of Starfield records the game can never reach (cut content in the official
+       files, dead records in a mod).
+       Mutagen.Bethesda.Starfield 0.54.4 comes through BuildKit from nuget.org (exact pin). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SfCutCheck</RootNamespace>
+    <AssemblyName>sfcutcheck</AssemblyName>
+    <Version>0.1.6</Version>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <!-- Shown in the exe's file properties (Details tab). -->
+    <Product>sfcutcheck</Product>
+    <AssemblyTitle>sfcutcheck: find what Starfield never uses</AssemblyTitle>
+    <Description>Finds Starfield records the game can never reach: cut content in the official files and unused records in a mod.</Description>
+    <Authors>Richard Bejtlich</Authors>
+    <Company>Richard Bejtlich</Company>
+    <Copyright>Copyright (C) 2026 Richard Bejtlich. GPL-3.0.</Copyright>
+  </PropertyGroup>
+
+  <!-- The stand-alone exe: one file with .NET inside, for players without the .NET SDK. No trimming (Mutagen uses
+       reflection, and so does Conditions.cs).
+         dotnet publish src -c Release -r win-x64 -p:SfCutCheckStandalone=true -o out\exe -->
+  <PropertyGroup Condition="'$(SfCutCheckStandalone)' == 'true'">
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>embedded</DebugType>
+    <NuGetLockFilePath>packages.win-x64.lock.json</NuGetLockFilePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Taosecurity.Starfield.BuildKit" Version="[0.2.0]" />
+  </ItemGroup>
+
+</Project>

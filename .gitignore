@@ -1,0 +1,17 @@
+bin/
+obj/
+out/
+*.user
+.vs/
+# never: game files, reports (they list game data), load orders
+*.esm
+*.esp
+*.esl
+*.ba2
+*.pex
+Plugins.txt
+plugins.txt
+report.csv
+report.json
+report.html
+report.tsv
