@@ -79,6 +79,12 @@ And checking one mod, the second time (the official scan is saved after the firs
 
 Nothing else is needed: .NET is built into the exe.
 
+**The exe isn't code-signed.** The first time you run it, Windows SmartScreen may show "Windows protected your PC".
+Click **More info**, then **Run anyway**. Some antivirus tools are also wary of unsigned single-file .NET programs,
+because that packaging unpacks itself when it runs. To be sure you have the file that was published, compare the
+`certutil` hash above with the `.sha256` file on the release page. Or skip the exe and build it yourself from the
+source (below).
+
 **From source (Windows or Linux, .NET SDK 9.0 or later):**
 
     git clone https://github.com/taosecurity/sfcutcheck

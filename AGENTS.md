@@ -42,6 +42,10 @@ Pick one. Files come from https://github.com/taosecurity/sfcutcheck/releases (ve
    Compare the printed hash with the one in `sfcutcheck-0.1.6-win-x64.zip.sha256`. The program is then
    `C:\Tools\sfcutcheck\sfcutcheck.exe`.
 
+   The exe isn't code-signed, so the first run may show Windows SmartScreen's "Windows protected your PC"
+   (More info, then Run anyway). Tell the user that's expected for an unsigned download, and that the matching
+   checksum is the check that matters. If the user prefers, build from source instead (option 2).
+
 2. **From source (Windows or Linux):**
 
        git clone https://github.com/taosecurity/sfcutcheck
